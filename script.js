@@ -1,6 +1,10 @@
 let calcBool = false;
 let decimalBool = false;
+let operator = "";
+let value1 = 0;
+let value2 = 0;
 // selectors //
+const calcDisplaytop = document.querySelector(".topCalc");
 const calcDisplay = document.querySelector(".curCalc");
 const number1 = document.querySelector(".number1");
 const number2 = document.querySelector(".number2");
@@ -21,6 +25,7 @@ const divison = document.querySelector(".divison");
 const subtraction = document.querySelector(".subtraction");
 const decimal = document.querySelector(".decimal");
 const equal = document.querySelector(".equal");
+const del = document.querySelector(".del");
 
 function add (a , b) {
 	return a + b;
@@ -35,19 +40,27 @@ function multiply (a , b) {
 function divide (a , b) {
 	return a / b;
 };
+function mod (a, b)
+{
+    return a % b;
+}
 function operate (value1, operator, value2){
-    let value = 0; 
     if(operator == "+")
-        value = add(value1, value2);
+        return add(value1, value2);
     if(operator == "-")
-        value = subtract(value1, value2);
+        return subtract(value1, value2);
     if(operator == "*")
-        value = multiply(value1, value2);
+        return multiply(value1, value2);
     if(operator == "/")
-        value = divide(value1, value2);
+        return divide(value1, value2);
+    if(operator == "%")
+        return mod (value1, value2);
 }
 allClear.addEventListener('click', () => {
     calcDisplay.innerHTML = 0;
+    calcDisplaytop.innerHTML = '';
+    value1 = 0;
+    value2 = 0;
     calcBool = false;
     decimalBool = false;
 })
@@ -59,7 +72,7 @@ decimal.addEventListener('click', () => {
     {
         calcDisplay.innerHTML += '.';
         decimalBool = true;
-    }
+    }value1 = calcDisplay.innerHTML;
 })
 number1.addEventListener('click', () => {
     calcDisplay.innerHTML == 0 && !decimalBool ? calcDisplay.innerHTML = 1 : calcDisplay.innerHTML  += 1;
@@ -94,17 +107,25 @@ number0.addEventListener('click', () => {
 addition.addEventListener('click', () => {
     if(!calcBool)
     {
+        operator = "+";
+        value1 = calcDisplay.innerHTML;
         calcDisplay.innerHTML += '+';
+        calcDisplaytop.innerHTML = value1 + operator;
+        calcDisplay.innerHTML = 0;
         decimalBool = false;
         calcBool = true;
     }
     else
-    calcDisplay.innerHTML += calcDisplay.innerHTML += '+';'';
+    calcDisplay.innerHTML += '';
 })
 divison.addEventListener('click', () => {
     if(!calcBool)
     {
+        operator = "/";
+        value1 = calcDisplay.innerHTML;
         calcDisplay.innerHTML += '/';
+        calcDisplaytop.innerHTML = value1 + operator;
+        calcDisplay.innerHTML = 0;
         decimalBool = false;
         calcBool = true;
     }
@@ -114,7 +135,11 @@ divison.addEventListener('click', () => {
 multiplcation.addEventListener('click', () => {
     if(!calcBool)
     {
+        operator = "*";
+        value1 = calcDisplay.innerHTML;
         calcDisplay.innerHTML += '*';
+        calcDisplaytop.innerHTML = value1 + operator;
+        calcDisplay.innerHTML = 0;
         decimalBool = false;
         calcBool = true;
     }
@@ -124,10 +149,44 @@ multiplcation.addEventListener('click', () => {
 subtraction.addEventListener('click', () => {
     if(!calcBool)
     {
+        operator = "-";
+        value1 = calcDisplay.innerHTML;
         calcDisplay.innerHTML += '-';
+        calcDisplaytop.innerHTML = value1 + operator;
+        calcDisplay.innerHTML = 0;
         decimalBool = false;
         calcBool = true;
     }
     else
     calcDisplay.innerHTML += '';
+})
+module.addEventListener('click', () => {
+    if(!calcBool)
+    {
+        operator = "%";
+        value1 = calcDisplay.innerHTML;
+        calcDisplay.innerHTML += '%';
+        calcDisplaytop.innerHTML = value1 + operator;
+        calcDisplay.innerHTML = 0;
+        decimalBool = false;
+        calcBool = true;
+    }
+    else
+    calcDisplay.innerHTML += '';
+})
+del.addEventListener('click', () => {
+    let x = calcDisplay.innerHTML;
+    calcDisplay.innerHTML == 0  ? 0 : x = (x.toString().slice(0, -1));
+    Number(x) ? calcDisplay.innerHTML = Number(x) : calcDisplay.innerHTML = 0;
+})
+equal.addEventListener('click', () => {
+    if(calcBool)
+    {   
+        value2 = calcDisplay.innerHTML;
+        calcDisplaytop.innerHTML = value1 + operator + value2;
+        calcDisplay.innerHTML = operate(parseInt(value1), operator, parseInt(value2))
+        value1 = value2;
+        value2 = 0;
+        calcBool = false;
+    }
 })

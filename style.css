@@ -46,20 +46,15 @@ button:hover {
     background-color: rgb(110, 163, 180);
     color: white;
 }
-.addition, .subtraction, .divison, .multiplcation {
+.addition, .subtraction, .divison, .multiplcation, .equal {
     background-color: orange;
 }
-.addition:hover, .subtraction:hover, .divison:hover, .multiplcation:hover {
+.addition:hover, .subtraction:hover, .divison:hover, .multiplcation:hover, .equal:hover {
     background-color: rgb(187, 122, 1);
     color: white;
 }
-.number0, .decimal, .equal {
+.number0, .decimal, .equal, .del {
     width: 100px;
     height: 100px;
     margin-bottom: 30px;
 }
-.equal {
-    width: 202px;
-    height: 100px;
-}
-
