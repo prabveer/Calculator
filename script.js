@@ -72,7 +72,8 @@ decimal.addEventListener('click', () => {
     {
         calcDisplay.innerHTML += '.';
         decimalBool = true;
-    }value1 = calcDisplay.innerHTML;
+    }
+    //!calcBool ? value1 = calcDisplay.innerHTML;
 })
 number1.addEventListener('click', () => {
     calcDisplay.innerHTML == 0 && !decimalBool ? calcDisplay.innerHTML = 1 : calcDisplay.innerHTML  += 1;
@@ -184,7 +185,8 @@ equal.addEventListener('click', () => {
     {   
         value2 = calcDisplay.innerHTML;
         calcDisplaytop.innerHTML = value1 + operator + value2;
-        calcDisplay.innerHTML = operate(parseInt(value1), operator, parseInt(value2))
+        console.log(value1 + operator + value2)
+        calcDisplay.innerHTML = operate(Number(value1), operator, Number(value2))
         value1 = value2;
         value2 = 0;
         calcBool = false;
